@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Mobile Automation Demo Smoke Test Suite">
+    <test name="Smoke Test">
+        <classes>
+            <class name="tests.MainTest">
+                <methods>
+                    <include name="testVPNConnection"/>
+                </methods>
+            </class>
+            <class name="tests.MenuTest">
+                <methods>
+                    <include name="testMenuOptions"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
