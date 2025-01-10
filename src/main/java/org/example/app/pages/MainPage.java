@@ -1,5 +1,6 @@
 package org.example.app.pages;
 
+import io.appium.java_client.AppiumDriver;
 import org.example.app.utils.CommonActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,7 +14,7 @@ public class MainPage extends CommonActions {
     private static final String okButton = "android:id/button1";
 
 
-    public MainPage(WebDriver driver) {
+    public MainPage(AppiumDriver driver) {
         super(driver);
     }
 

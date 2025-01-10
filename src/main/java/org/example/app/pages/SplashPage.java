@@ -1,5 +1,6 @@
 package org.example.app.pages;
 
+import io.appium.java_client.AppiumDriver;
 import org.example.app.utils.CommonActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -12,7 +13,7 @@ public class SplashPage extends CommonActions {
     private static final String closeButton = ANDROID_APP_PACKAGE + ":id/iv_close";
     private static final String adsLabel = "//android.widget.TextView[@text='Test Ad']";
 
-    public SplashPage(WebDriver driver) {
+    public SplashPage(AppiumDriver driver) {
         super(driver);
     }
 

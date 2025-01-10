@@ -1,5 +1,6 @@
 package org.example.app.pages;
 
+import io.appium.java_client.AppiumDriver;
 import org.example.app.utils.CommonActions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -18,7 +19,7 @@ public class MenuPage extends CommonActions {
     private static final String menuPurchase = ANDROID_APP_PACKAGE + ":id/purchase_layout";
 
 
-    public MenuPage(WebDriver driver) {
+    public MenuPage(AppiumDriver driver) {
         super(driver);
     }
 
@@ -27,6 +28,7 @@ public class MenuPage extends CommonActions {
     }
 
     public void checkMenuList() {
+        verticalSwipeFromBottomToTop();
         assertToCheckElementVisibility(By.id(menuProfileLayout), Boolean.TRUE);
         assertToCheckElementVisibility(By.id(menuAccount), Boolean.TRUE);
         assertToCheckElementVisibility(By.id(menuSetting), Boolean.TRUE);

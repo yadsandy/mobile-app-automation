@@ -10,7 +10,7 @@ import java.io.File;
 import static org.example.app.utils.Constants.*;
 
 public class IosDriverService implements MobileDriverService {
-    private AppiumDriver iosDriver;
+    private IOSDriver iosDriver;
 
     @Override
     public void spinUpDriver(AppiumDriverLocalService appiumService) {

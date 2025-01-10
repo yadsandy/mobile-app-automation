@@ -1,10 +1,11 @@
 package org.example.app.pages;
 
+import io.appium.java_client.AppiumDriver;
 import org.example.app.utils.CommonActions;
 import org.openqa.selenium.WebDriver;
 
 public class PageSelector extends CommonActions {
-    public PageSelector(WebDriver driver) {
+    public PageSelector(AppiumDriver driver) {
         super(driver);
     }
 
