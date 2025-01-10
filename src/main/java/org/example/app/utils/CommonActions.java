@@ -25,27 +25,19 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Consumer;
 
 import static org.example.app.driver.MobileDriverHolder.getDriver;
-import static org.example.app.utils.Constants.ANDROID;
-import static org.example.app.utils.Constants.MOBILE_PLATFORM_NAME;
+import static org.example.app.utils.Constants.*;
 
 public class CommonActions {
-    public final AppiumDriver driver;
-    public final WebDriverWait wait;
-
-    public CommonActions(AppiumDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-    }
 
     public void waitUntilElementVisible(By by) {
-        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+        new WebDriverWait(getDriver(),APPIUM_DRIVER_TIMEOUT).until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     public WebElement scrollToElement(String elementText) {
         WebElement element;
 
         if (MOBILE_PLATFORM_NAME.equalsIgnoreCase(ANDROID)) {
-            element = driver
+            element = getDriver()
                     .findElement(
                             AppiumBy.androidUIAutomator(
                                     "new UiScrollable(new UiSelector().scrollable(true))"
@@ -53,7 +45,7 @@ public class CommonActions {
                             )
                     );
         } else {
-            element = driver.findElement(AppiumBy.iOSNsPredicateString("label == '" + elementText + "'"));
+            element = getDriver().findElement(AppiumBy.iOSNsPredicateString("label == '" + elementText + "'"));
         }
 
         return element;
@@ -61,13 +53,13 @@ public class CommonActions {
 
     public void clickOnElement(By by) {
         if (checkElementVisibility(by)) {
-            driver.findElement(by).click();
+            getDriver().findElement(by).click();
         }
 
     }
 
     public boolean checkElementVisibility(By by) {
-        return !driver.findElements(by).isEmpty();
+        return !getDriver().findElements(by).isEmpty();
     }
 
     public void scrollAndTap(String elementText) {
@@ -76,7 +68,7 @@ public class CommonActions {
 
     public void inputText(By by, String text) {
         waitUntilElementVisible(by);
-        driver.findElement(by).sendKeys(text);
+        getDriver().findElement(by).sendKeys(text);
     }
 
     public void scrollAndInputText(String elementText, String text) {
@@ -84,8 +76,8 @@ public class CommonActions {
     }
 
     public String getAlertText() {
-        wait.until(ExpectedConditions.alertIsPresent());
-        return driver.switchTo().alert().getText();
+        new WebDriverWait(getDriver(), APPIUM_DRIVER_TIMEOUT).until(ExpectedConditions.alertIsPresent());
+        return getDriver().switchTo().alert().getText();
     }
 
     public void assertToCheckElementVisibility(By by, Boolean checkVisibility) {
@@ -98,27 +90,27 @@ public class CommonActions {
 
 
     protected String getText(By by) {
-        return driver.findElement(by).getText();
+        return getDriver().findElement(by).getText();
     }
 
     protected boolean isElementDisplayed(By by) {
-        return driver.findElement(by).isDisplayed();
+        return getDriver().findElement(by).isDisplayed();
     }
 
     protected void doClear(By by) {
-        driver.findElement(by).clear();
+        getDriver().findElement(by).clear();
     }
 
 
     protected void moveMouseToElement(By by, int x_offset, int y_offset) {
-        new Actions(driver)
-                .moveToElement(driver.findElement(by), x_offset, y_offset)
+        new Actions(getDriver())
+                .moveToElement(getDriver().findElement(by), x_offset, y_offset)
                 .perform();
     }
 
     protected void doubleClickOnElement(By by) {
-        new Actions(driver)
-                .moveToElement(driver.findElement(by))
+        new Actions(getDriver())
+                .moveToElement(getDriver().findElement(by))
                 .doubleClick()
                 .perform();
     }
@@ -126,13 +118,13 @@ public class CommonActions {
 
     protected void enterValueAndPressEnter(By by, String value) {
 
-        driver.findElement(by).sendKeys(value, Keys.ENTER);
+        getDriver().findElement(by).sendKeys(value, Keys.ENTER);
     }
 
     public void verticalSwipeFromTopToBottom() {
-            int startX = driver.manage().window().getSize().getWidth() / 2;
-            int startY = (int) (driver.manage().window().getSize().getHeight() * 0.70);
-            int endY = (int) (driver.manage().window().getSize().getHeight() * 0.2);
+            int startX = getDriver().manage().window().getSize().getWidth() / 2;
+            int startY = (int) (getDriver().manage().window().getSize().getHeight() * 0.70);
+            int endY = (int) (getDriver().manage().window().getSize().getHeight() * 0.2);
             PointerInput indexFinger = new PointerInput(PointerInput.Kind.TOUCH, "indexFinger");
             Sequence scroll = new Sequence(indexFinger, 1);
             scroll.addAction(indexFinger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, endY));
@@ -142,14 +134,14 @@ public class CommonActions {
             Duration scrollingSpeedDuration = Duration.ofSeconds(2);
             scroll.addAction(indexFinger.createPointerMove(scrollingSpeedDuration, PointerInput.Origin.viewport(), startX, startY));
             scroll.addAction(indexFinger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-            driver.perform(Collections.singletonList(scroll));
+            getDriver().perform(Collections.singletonList(scroll));
 
     }
 
     public void verticalSwipeFromBottomToTop() {
-            int startX = driver.manage().window().getSize().getWidth() / 2;
-            int startY = (int) (driver.manage().window().getSize().getHeight() * 0.70);
-            int endY = (int) (driver.manage().window().getSize().getHeight() * 0.20);
+            int startX = getDriver().manage().window().getSize().getWidth() / 2;
+            int startY = (int) (getDriver().manage().window().getSize().getHeight() * 0.70);
+            int endY = (int) (getDriver().manage().window().getSize().getHeight() * 0.20);
             Point source = new Point(startX, startY);
             Point target = new Point(startX, endY);
             PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
@@ -160,7 +152,7 @@ public class CommonActions {
             swipe.addAction(finger.createPointerMove(Duration.ofMillis(500),
                     PointerInput.Origin.viewport(), target.x, target.y));
             swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-            driver.perform(List.of(swipe));
+            getDriver().perform(List.of(swipe));
     }
 
 }

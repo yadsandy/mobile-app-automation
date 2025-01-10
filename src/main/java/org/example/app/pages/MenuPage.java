@@ -19,9 +19,6 @@ public class MenuPage extends CommonActions {
     private static final String menuPurchase = ANDROID_APP_PACKAGE + ":id/purchase_layout";
 
 
-    public MenuPage(AppiumDriver driver) {
-        super(driver);
-    }
 
     public void clickOnMenu() {
         clickOnElement(By.id(menuButton));

@@ -13,9 +13,6 @@ public class SplashPage extends CommonActions {
     private static final String closeButton = ANDROID_APP_PACKAGE + ":id/iv_close";
     private static final String adsLabel = "//android.widget.TextView[@text='Test Ad']";
 
-    public SplashPage(AppiumDriver driver) {
-        super(driver);
-    }
 
     public void checkClosePopUpAndClick() {
         clickOnElement(By.id(closeButton));

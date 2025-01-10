@@ -1,5 +1,7 @@
 package tests;
 
+import org.example.app.pages.MainPage;
+import org.example.app.pages.SplashPage;
 import org.example.app.utils.Feature;
 import org.testng.annotations.Test;
 
@@ -10,8 +12,10 @@ public class MainTest extends BaseTest {
     @Feature(MAIN)
     @Test(description = "Verify the VPN connection")
     public void testVPNConnection() {
-        screen().getSplashPage().proceedToMainScreen();
-        screen().getMainPage().connectVPN();
+        MainPage mainPage=new MainPage();
+        SplashPage splashPage=new SplashPage();
+        splashPage.proceedToMainScreen();
+        mainPage.connectVPN();
     }
 
 }

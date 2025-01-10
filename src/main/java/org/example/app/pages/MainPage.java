@@ -14,10 +14,6 @@ public class MainPage extends CommonActions {
     private static final String okButton = "android:id/button1";
 
 
-    public MainPage(AppiumDriver driver) {
-        super(driver);
-    }
-
     private void checkOKAndClick() {
         if (checkElementVisibility(By.id(okButton))) {
             clickOnElement(By.id(okButton));
