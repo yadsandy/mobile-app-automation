@@ -27,6 +27,9 @@ jobs:
         java-version: '23'
         distribution: 'temurin'
         cache: maven
+    - name: Install brew
+      run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
     - name: Install adb
       run: brew install android-platform-tools
 
