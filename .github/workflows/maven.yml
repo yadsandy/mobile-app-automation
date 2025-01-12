@@ -31,7 +31,7 @@ jobs:
       run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
     - name: Install adb
-      run: brew install android-platform-tools
+      run: brew install adb
 
     - name: Install Appium
       run: npm install -g appium@next
