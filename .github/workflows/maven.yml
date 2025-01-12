@@ -27,7 +27,13 @@ jobs:
         java-version: '23'
         distribution: 'temurin'
         cache: maven
-        
+
+    - name: Install Appium
+      run: npm install -g appium@next
+
+    - name: Install Appium drivers
+      run: appium driver install uiautomator2
+      
     - name: Build with Maven
       run: mvn -B package --file pom.xml
 
