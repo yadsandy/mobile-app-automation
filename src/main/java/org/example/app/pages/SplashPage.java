@@ -1,29 +1,30 @@
 package org.example.app.pages;
 
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.example.app.utils.CommonActions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-
-import static org.example.app.utils.Constants.ANDROID_APP_PACKAGE;
+import org.openqa.selenium.WebElement;
 
 public class SplashPage extends CommonActions {
 
-
-    private static final String closeButton = ANDROID_APP_PACKAGE + ":id/iv_close";
-    private static final String adsLabel = "//android.widget.TextView[@text='Test Ad']";
-
+    @AndroidFindBy(id = "com.fast.free.unblock.secure.vpn:id/iv_close")
+    private WebElement closeButton;
+    @AndroidFindBy(xpath = "//android.widget.TextView[@text='Test Ad']")
+    private WebElement adsLabel;
+    public SplashPage(WebDriver driver) {
+        super(driver);
+    }
 
     public void checkClosePopUpAndClick() {
-        clickOnElement(By.id(closeButton));
+        clickOnElement(closeButton);
     }
 
     public void checkAdsAndClose() {
-        clickOnElement(By.id(adsLabel));
+        clickOnElement(adsLabel);
     }
 
     public void proceedToMainScreen() {
-        if (checkElementVisibility(By.id(closeButton))) {
+        if (checkElementVisibility(closeButton)) {
             checkClosePopUpAndClick();
         } else {
             checkAdsAndClose();
