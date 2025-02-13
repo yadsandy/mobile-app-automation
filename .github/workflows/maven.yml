@@ -24,26 +24,26 @@ jobs:
           java-version: '18' # Specify the Java version (e.g., 11, 17)
           distribution: 'zulu' # Use Temurin (Adoptium) as the JDK distribution
 
-      # Set up Node.js (required for Appium)
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '18' # Specify the Node.js version
+      # # Set up Node.js (required for Appium)
+      # - name: Set up Node.js
+      #   uses: actions/setup-node@v3
+      #   with:
+      #     node-version: '18' # Specify the Node.js version
 
-      # Install Appium globally
-      - name: Install Appium
-        run: npm install -g appium@next
-        continue-on-error: true
+      # # Install Appium globally
+      # - name: Install Appium
+      #   run: npm install -g appium@next
+      #   continue-on-error: true
 
-      # Install android driver for appium
-      - name: Install Android driver  
-        run: appium driver install uiautomator2
-        continue-on-error: true
+      # # Install android driver for appium
+      # - name: Install Android driver  
+      #   run: appium driver install uiautomator2
+      #   continue-on-error: true
    
-      # Install ios driver for appium
-      - name: Install iOS driver 
-        run: appium driver install xcuitest
-        continue-on-error: true
+      # # Install ios driver for appium
+      # - name: Install iOS driver 
+      #   run: appium driver install xcuitest
+      #   continue-on-error: true
       
       # Run Maven tests (assuming you're using Maven)
       - name: Run Maven tests
