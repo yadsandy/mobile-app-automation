@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Counter App Automation - Test Suite">
+    <test name="Smoke Test">
+        <classes>
+            <class name="tests.MainTest">
+                <methods>
+                    <include name="testCounterAppFlow"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
