@@ -50,8 +50,6 @@ public class MainTest extends BaseTest {
         logger.debug("clicked on calender ok button.");
         Assert.assertTrue(homePage.checkSelectedLabel());
         logger.debug("verified selected label when the date is selected from calender.");
-
-
     }
 
 }
